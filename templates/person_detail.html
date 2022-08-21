@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+
+<div class="page-header">
+    <p>
+        <h3><a>ID: </a><b>{{ value.id }}</b></h3>
+        <h3><a>First Name: </a><b>{{ value.name }}</b></h3>
+        <h3><a>Last Name: </a><b>{{ value.last_name }}</b></h3>
+    </p>
+        <br /> <a href="/people">People</a>
+</div>
+{% endblock %}
