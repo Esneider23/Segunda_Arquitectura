@@ -38,11 +38,9 @@ class Person(object):
 
     @classmethod
     # Update a people
-    def update(cls, id_person):
+    def update(cls, people: dict):
         with open('db.json') as json_file:
             data = json.load(json_file)
-            data.update()
-
 
     @classmethod
     # Removes a person from the file

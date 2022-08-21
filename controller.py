@@ -84,10 +84,12 @@ def update(id_person):
 
 @app.route('/person_update/<id_person>', methods=['POST'])
 def update_p(id_person):
-    last_name = request.form['last_name']
     first_name = request.form['first_name']
+    last_name = request.form['last_name']
     p = Person(id=id_person, first_name=first_name, last_name=last_name)
     data = {'id': p.id, 'name': p.first_name, 'last_name': p.last_name}
+    Person.update(data)
+    return render_template('person_detail.html', value=data)
 
 
 @app.route('/person_delete/<id_person>', methods=["POST"])
