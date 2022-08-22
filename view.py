@@ -21,5 +21,9 @@ def delete_id():
     print('Type the ID to be deleted')
 
 
+def update():
+    print('Type the ID to update')
+
+
 def end_view():
     print('Goodbye!')

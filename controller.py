@@ -19,10 +19,13 @@ def person():
 
 @app.route('/person_detail', methods=["POST"])
 def person_detail():
+    # here we take the values of the fields
     id_person = request.form['id_person']
     first_name = request.form['first_name']
     last_name = request.form['last_name']
+    # we enter the values to Person
     p = Person(id=id_person, first_name=first_name, last_name=last_name)
+    # we create dictionary, to take the data and send to view
     data = {'id': p.id, 'name': p.first_name, 'last_name': p.last_name}
     Person.create(p)
     print(data)
@@ -104,6 +107,25 @@ def delet():
     view.delete_id()
     input = raw_input()
     Person.delete(input)
+
+
+def update_con():
+    show_all()
+    view.update()
+    input = raw_input()
+    people = Person.get_all()
+    data = [(i.id, i.first_name, i.last_name) for i in people]
+    for i in people:
+        try:
+            if input == data[0][0]:
+                print("Write the person's name: ")
+                first_name = raw_input()
+                print("Type the person's last name: ")
+                last_name = raw_input()
+                data = {'id': input, 'name': first_name, 'last_name': last_name}
+                Person.update(data)
+        except ValueError:
+            print("The people not exist")
 
 
 if __name__ == "__main__":
