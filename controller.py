@@ -86,8 +86,7 @@ def update(id_person):
 def update_p(id_person):
     first_name = request.form['first_name']
     last_name = request.form['last_name']
-    p = Person(id=id_person, first_name=first_name, last_name=last_name)
-    data = {'id': p.id, 'name': p.first_name, 'last_name': p.last_name}
+    data = {'id': id_person, 'name': first_name, 'last_name': last_name}
     Person.update(data)
     return render_template('person_detail.html', value=data)
 

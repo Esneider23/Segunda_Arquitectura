@@ -38,9 +38,17 @@ class Person(object):
 
     @classmethod
     # Update a people
-    def update(cls, people: dict):
-        with open('db.json') as json_file:
-            data = json.load(json_file)
+    def update(cls, p):
+        with open('db.json',  encoding="utf-8") as file:
+            data = json.load(file)
+            result = [person for person in data if person['id'] != p['id']]
+            update = {"id": p['id'], "first_name": p['name'], "last_name": p['last_name']}
+            result.append(update)
+        try:
+            with open('db.json', 'w', encoding="utf-8") as file:
+                file.write(json.dumps(result))
+        except ValueError:
+            print("Error")
 
     @classmethod
     # Removes a person from the file
@@ -49,7 +57,6 @@ class Person(object):
             data = json.load(json_file)
         try:
             result = [person for person in data if person['id'] != id_person]
-            print(result)
             with open('db.json', 'w', encoding="utf-8") as file:
                 file.write(json.dumps(result))
         except ValueError:
