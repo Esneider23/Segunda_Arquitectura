@@ -46,12 +46,16 @@ def create_p():
 
 @app.route('/people')
 def people():
-    # Saves all the information of the person object
     people_in_db = Person.get_all()
-    data = [(i.id, i.first_name, i.last_name) for i in people_in_db]
-    # The data to be stored is printed
-    print(data)
-    # calls render template
+    if not len(people_in_db) == 0:
+        data = [(i.id, i.first_name, i.last_name) for i in people_in_db]
+        start("y")
+    else:
+        data = [(i.id, i.first_name, i.last_name) for i in people_in_db]
+        start("n")
+        return render_template('people.html', value=data)
+
+    #print(data)
     return render_template('people.html', value=data)
 
 
@@ -62,18 +66,18 @@ def show_all():
     return view.show_all_view(people_in_db)
 
 
-def start():
+def start(conf):
     # call the views
     view.start_view()
     # Request for information
-    input = raw_input()
+    input = conf
     # Data entry is conditioned
     if input == 'y':
         # call the function
         return show_all()
     else:
         # call the function
-        return view.end_view()
+        return view.empty_view()
 
 
 @app.route('/person_update/<id_person>', methods=['GET'])

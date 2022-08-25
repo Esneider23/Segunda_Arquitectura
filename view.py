@@ -10,7 +10,7 @@ def welcome():
 
 def start_view():
     print('MVC - the simplest example')
-    print('Do you want to see everyone in my db?[y/n]')
+    print('Does the data in the database exist [y/n]?')
 
 
 def create_people():
@@ -25,5 +25,11 @@ def update():
     print('Type the ID to update')
 
 
+def empty_view():
+    print("Not exist data")
+
+
 def end_view():
     print('Goodbye!')
+
+
